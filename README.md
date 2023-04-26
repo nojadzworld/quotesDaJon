@@ -30,7 +30,7 @@ Make sure you have the following software installed:
 1. Clone the repository:
 
     ```git
-    git clone https://github.com/your_username/quotes.git
+    git clone https://github.com/AlexBCarr/quotes
     cd quotes
     ```
 
@@ -63,7 +63,7 @@ To run the tests for the application, use the following command:
 
 - Cameron Griffin - [CodrCam](https://github.com/CodrCam)
 
-- Cameron Griffin - [CodrCam](https://github.com/CodrCam)
+- Alex Carr - [AlexBCarr](https://github.com/AlexBCarr)
 
 ## License
 
