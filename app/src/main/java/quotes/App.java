@@ -1,6 +1,6 @@
 package quotes;
 
-public class Quotes {
+public class App {
 
     public static void main(String[] args) {
         QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
