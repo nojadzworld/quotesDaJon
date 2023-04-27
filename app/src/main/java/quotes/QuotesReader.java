@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class QuotesReader {
     private List<Quote> quotes;
@@ -31,5 +32,42 @@ public class QuotesReader {
         Random random = new Random();
         int index = random.nextInt(quotes.size());
         return quotes.get(index);
+    }
+
+    public Quote getQuoteByAuthor(String author) {
+        List<Quote> matchingQuotes = quotes.stream()
+                .filter(quote -> quote.getAuthor().equalsIgnoreCase(author))
+                .collect(Collectors.toList());
+
+        if (matchingQuotes.isEmpty()) {
+            return null;
+        }
+
+        return matchingQuotes.get(new Random().nextInt(matchingQuotes.size()));
+    }
+
+    public Quote getQuoteContainingWord(String word) {
+        List<Quote> matchingQuotes = quotes.stream()
+                .filter(quote -> quote.getText().toLowerCase().contains(word.toLowerCase()))
+                .collect(Collectors.toList());
+
+        if (matchingQuotes.isEmpty()) {
+            return null;
+        }
+
+        return matchingQuotes.get(new Random().nextInt(matchingQuotes.size()));
+    }
+
+    public Quote getQuoteByAuthorAndWord(String author, String word) {
+        List<Quote> matchingQuotes = quotes.stream()
+                .filter(quote -> quote.getAuthor().equalsIgnoreCase(author)
+                        && quote.getText().toLowerCase().contains(word.toLowerCase()))
+                .collect(Collectors.toList());
+
+        if (matchingQuotes.isEmpty()) {
+            return null;
+        }
+
+        return matchingQuotes.get(new Random().nextInt(matchingQuotes.size()));
     }
 }
