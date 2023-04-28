@@ -1,10 +1,23 @@
 package quotes;
 
+
+import java.io.IOException;
+
 public class App {
 
     public static void main(String[] args) {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
-        Quote randomQuote = quotesReader.getRandomQuote();
+
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
+        Quote randomQuote = null;
+
+
+        try {
+            randomQuote = quotesReader.getRandomStarWarsQuote();
+
+        }catch (IOException e) {
+            System.out.println("failed to connect to api");
+            randomQuote = quotesReader.getRandomQuote();
+        }
 
         displayQuote(randomQuote);
     }
@@ -16,4 +29,6 @@ public class App {
             System.out.println("No quotes available.");
         }
     }
+
+
 }

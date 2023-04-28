@@ -1,6 +1,9 @@
 package quotes;
 
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -25,7 +28,7 @@ public class QuoteTest {
 
     @Test
     public void testGetRandomQuote() {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
         Quote randomQuote = quotesReader.getRandomQuote();
 
         assertNotNull(randomQuote);
@@ -41,7 +44,7 @@ public class QuoteTest {
 
     @Test
     public void testGetQuoteByAuthor() {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
         Quote quoteByAuthor = quotesReader.getQuoteByAuthor("Charles Dickens");
 
         assertNotNull(quoteByAuthor);
@@ -50,7 +53,7 @@ public class QuoteTest {
 
     @Test
     public void testGetQuoteContainingWord() {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
         Quote quoteContainingWord = quotesReader.getQuoteContainingWord("liberty");
 
         assertNotNull(quoteContainingWord);
@@ -59,7 +62,7 @@ public class QuoteTest {
 
     @Test
     public void testGetQuoteByAuthorAndWord() {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
         Quote quoteByAuthorAndWord = quotesReader.getQuoteByAuthorAndWord("Charles Dickens", "March");
 
         assertNotNull(quoteByAuthorAndWord);
@@ -69,7 +72,7 @@ public class QuoteTest {
 
     @Test
     public void testGetQuoteByNonexistentAuthor() {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
         Quote quoteByAuthor = quotesReader.getQuoteByAuthor("Nonexistent Author");
 
         assertNull(quoteByAuthor);
@@ -77,7 +80,7 @@ public class QuoteTest {
 
     @Test
     public void testGetQuoteContainingNonexistentWord() {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
         Quote quoteContainingWord = quotesReader.getQuoteContainingWord("nonexistentword");
 
         assertNull(quoteContainingWord);
@@ -85,9 +88,16 @@ public class QuoteTest {
 
     @Test
     public void testGetQuoteByAuthorAndNonexistentWord() {
-        QuotesReader quotesReader = new QuotesReader("/Users/camerongriffin/projects/courses/401/quotes/app/src/main/resources/recentquotes.json");
+        QuotesReader quotesReader = new QuotesReader("./app/src/main/resources/recentquotes.json");
         Quote quoteByAuthorAndWord = quotesReader.getQuoteByAuthorAndWord("Charles Dickens", "nonexistentword");
 
         assertNull(quoteByAuthorAndWord);
+    }
+
+    @Test
+    public void testGetRandomStarWarsQuote() throws IOException {
+        QuotesReader generator = new QuotesReader();
+        Quote quote = generator.getRandomStarWarsQuote();
+        assertNotNull(quote);
     }
 }
